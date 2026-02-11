@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Extension-Name: org.apache.lucene
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Title: org.apache.lucene
+Implementation-Version: 9.6.0-SNAPSHOT (not a git checkout) [snapshot bu
+ ild, details omitted]
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 9.6.0
+Specification-Title: Lucene Search Engine: extensions
+X-Compile-Source-JDK: 11
+X-Compile-Target-JDK: 11
+X-Build-JDK: 11.0.30 (Ubuntu 11.0.30+7-post-Ubuntu-1ubuntu124.04)
+X-Build-OS: Linux amd64 6.14.0-37-generic
+

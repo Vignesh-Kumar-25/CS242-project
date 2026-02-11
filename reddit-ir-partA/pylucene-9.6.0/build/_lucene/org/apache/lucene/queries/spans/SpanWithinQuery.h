@@ -1,0 +1,95 @@
+#ifndef org_apache_lucene_queries_spans_SpanWithinQuery_H
+#define org_apache_lucene_queries_spans_SpanWithinQuery_H
+
+#include "org/apache/lucene/queries/spans/SpanContainQuery.h"
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace search {
+        class IndexSearcher;
+        class ScoreMode;
+      }
+      namespace queries {
+        namespace spans {
+          class SpanQuery;
+          class SpanWeight;
+        }
+      }
+    }
+  }
+}
+namespace java {
+  namespace io {
+    class IOException;
+  }
+  namespace lang {
+    class Class;
+    class String;
+  }
+}
+template<class T> class JArray;
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace queries {
+        namespace spans {
+
+          class SpanWithinQuery : public ::org::apache::lucene::queries::spans::SpanContainQuery {
+           public:
+            enum {
+              mid_init$_9ca197c3f727388d,
+              mid_createWeight_18b5d04a7c3e57b6,
+              mid_toString_04612c8360f09496,
+              max_mid
+            };
+
+            static ::java::lang::Class *class$;
+            static jmethodID *mids$;
+            static bool live$;
+            static jclass initializeClass(bool);
+
+            explicit SpanWithinQuery(jobject obj) : ::org::apache::lucene::queries::spans::SpanContainQuery(obj) {
+              if (obj != NULL && mids$ == NULL)
+                env->getClass(initializeClass);
+            }
+            SpanWithinQuery(const SpanWithinQuery& obj) : ::org::apache::lucene::queries::spans::SpanContainQuery(obj) {}
+
+            SpanWithinQuery(const ::org::apache::lucene::queries::spans::SpanQuery &, const ::org::apache::lucene::queries::spans::SpanQuery &);
+
+            ::org::apache::lucene::queries::spans::SpanWeight createWeight(const ::org::apache::lucene::search::IndexSearcher &, const ::org::apache::lucene::search::ScoreMode &, jfloat) const;
+            ::java::lang::String toString(const ::java::lang::String &) const;
+          };
+        }
+      }
+    }
+  }
+}
+
+#include <Python.h>
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace queries {
+        namespace spans {
+          extern PyType_Def PY_TYPE_DEF(SpanWithinQuery);
+          extern PyTypeObject *PY_TYPE(SpanWithinQuery);
+
+          class t_SpanWithinQuery {
+          public:
+            PyObject_HEAD
+            SpanWithinQuery object;
+            static PyObject *wrap_Object(const SpanWithinQuery&);
+            static PyObject *wrap_jobject(const jobject&);
+            static void install(PyObject *module);
+            static void initialize(PyObject *module);
+          };
+        }
+      }
+    }
+  }
+}
+
+#endif

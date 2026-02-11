@@ -1,0 +1,103 @@
+#ifndef org_apache_lucene_analysis_ja_tokenattributes_PartOfSpeechAttributeImpl_H
+#define org_apache_lucene_analysis_ja_tokenattributes_PartOfSpeechAttributeImpl_H
+
+#include "org/apache/lucene/util/AttributeImpl.h"
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace util {
+        class AttributeReflector;
+      }
+      namespace analysis {
+        namespace ja {
+          namespace tokenattributes {
+            class PartOfSpeechAttribute;
+          }
+          class Token;
+        }
+      }
+    }
+  }
+}
+namespace java {
+  namespace lang {
+    class Class;
+    class String;
+  }
+}
+template<class T> class JArray;
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace analysis {
+        namespace ja {
+          namespace tokenattributes {
+
+            class PartOfSpeechAttributeImpl : public ::org::apache::lucene::util::AttributeImpl {
+             public:
+              enum {
+                mid_init$_3353d9f14bbfd91a,
+                mid_clear_3353d9f14bbfd91a,
+                mid_copyTo_0763465cd7a2713a,
+                mid_getPartOfSpeech_dc633f13a47328a8,
+                mid_reflectWith_6bfc1709573bfcf8,
+                mid_setToken_7f5f44237f19efa9,
+                max_mid
+              };
+
+              static ::java::lang::Class *class$;
+              static jmethodID *mids$;
+              static bool live$;
+              static jclass initializeClass(bool);
+
+              explicit PartOfSpeechAttributeImpl(jobject obj) : ::org::apache::lucene::util::AttributeImpl(obj) {
+                if (obj != NULL && mids$ == NULL)
+                  env->getClass(initializeClass);
+              }
+              PartOfSpeechAttributeImpl(const PartOfSpeechAttributeImpl& obj) : ::org::apache::lucene::util::AttributeImpl(obj) {}
+
+              PartOfSpeechAttributeImpl();
+
+              void clear() const;
+              void copyTo(const ::org::apache::lucene::util::AttributeImpl &) const;
+              ::java::lang::String getPartOfSpeech() const;
+              void reflectWith(const ::org::apache::lucene::util::AttributeReflector &) const;
+              void setToken(const ::org::apache::lucene::analysis::ja::Token &) const;
+            };
+          }
+        }
+      }
+    }
+  }
+}
+
+#include <Python.h>
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace analysis {
+        namespace ja {
+          namespace tokenattributes {
+            extern PyType_Def PY_TYPE_DEF(PartOfSpeechAttributeImpl);
+            extern PyTypeObject *PY_TYPE(PartOfSpeechAttributeImpl);
+
+            class t_PartOfSpeechAttributeImpl {
+            public:
+              PyObject_HEAD
+              PartOfSpeechAttributeImpl object;
+              static PyObject *wrap_Object(const PartOfSpeechAttributeImpl&);
+              static PyObject *wrap_jobject(const jobject&);
+              static void install(PyObject *module);
+              static void initialize(PyObject *module);
+            };
+          }
+        }
+      }
+    }
+  }
+}
+
+#endif

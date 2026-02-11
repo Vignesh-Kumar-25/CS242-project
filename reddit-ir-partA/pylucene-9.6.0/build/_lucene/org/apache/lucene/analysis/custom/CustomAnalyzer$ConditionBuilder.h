@@ -1,0 +1,98 @@
+#ifndef org_apache_lucene_analysis_custom_CustomAnalyzer$ConditionBuilder_H
+#define org_apache_lucene_analysis_custom_CustomAnalyzer$ConditionBuilder_H
+
+#include "java/lang/Object.h"
+
+namespace java {
+  namespace util {
+    class Map;
+  }
+  namespace io {
+    class IOException;
+  }
+  namespace lang {
+    class Class;
+    class String;
+  }
+}
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace analysis {
+        class TokenFilterFactory;
+        namespace custom {
+          class CustomAnalyzer$ConditionBuilder;
+          class CustomAnalyzer$Builder;
+        }
+      }
+    }
+  }
+}
+template<class T> class JArray;
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace analysis {
+        namespace custom {
+
+          class CustomAnalyzer$ConditionBuilder : public ::java::lang::Object {
+           public:
+            enum {
+              mid_addTokenFilter_d0211fbbc1dfad1a,
+              mid_addTokenFilter_f3af4a2aeed04298,
+              mid_addTokenFilter_297a035c2f838942,
+              mid_addTokenFilter_aea5cb513f7e43ea,
+              mid_endwhen_357ba850c9b81784,
+              max_mid
+            };
+
+            static ::java::lang::Class *class$;
+            static jmethodID *mids$;
+            static bool live$;
+            static jclass initializeClass(bool);
+
+            explicit CustomAnalyzer$ConditionBuilder(jobject obj) : ::java::lang::Object(obj) {
+              if (obj != NULL && mids$ == NULL)
+                env->getClass(initializeClass);
+            }
+            CustomAnalyzer$ConditionBuilder(const CustomAnalyzer$ConditionBuilder& obj) : ::java::lang::Object(obj) {}
+
+            CustomAnalyzer$ConditionBuilder addTokenFilter(const ::java::lang::Class &, const JArray< ::java::lang::String > &) const;
+            CustomAnalyzer$ConditionBuilder addTokenFilter(const ::java::lang::String &, const JArray< ::java::lang::String > &) const;
+            CustomAnalyzer$ConditionBuilder addTokenFilter(const ::java::lang::Class &, const ::java::util::Map &) const;
+            CustomAnalyzer$ConditionBuilder addTokenFilter(const ::java::lang::String &, const ::java::util::Map &) const;
+            ::org::apache::lucene::analysis::custom::CustomAnalyzer$Builder endwhen() const;
+          };
+        }
+      }
+    }
+  }
+}
+
+#include <Python.h>
+
+namespace org {
+  namespace apache {
+    namespace lucene {
+      namespace analysis {
+        namespace custom {
+          extern PyType_Def PY_TYPE_DEF(CustomAnalyzer$ConditionBuilder);
+          extern PyTypeObject *PY_TYPE(CustomAnalyzer$ConditionBuilder);
+
+          class t_CustomAnalyzer$ConditionBuilder {
+          public:
+            PyObject_HEAD
+            CustomAnalyzer$ConditionBuilder object;
+            static PyObject *wrap_Object(const CustomAnalyzer$ConditionBuilder&);
+            static PyObject *wrap_jobject(const jobject&);
+            static void install(PyObject *module);
+            static void initialize(PyObject *module);
+          };
+        }
+      }
+    }
+  }
+}
+
+#endif
