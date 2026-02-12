@@ -1,0 +1,138 @@
+{
+  "total_books": 12,
+  "total_size_mb": 5.918834686279297,
+  "books": [
+    {
+      "book_id": "2814",
+      "title": "Dubliners by James Joyce",
+      "author": "Joyce, James, 1882-1941",
+      "language": "English",
+      "subjects": [],
+      "downloads": "13511 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/2814",
+      "filename": "gutenberg_books\\2814_Dubliners by James Joyce.txt",
+      "file_size_kb": 396.23828125
+    },
+    {
+      "book_id": "77910",
+      "title": "In the day's work by Daniel Berkeley Updike",
+      "author": "Updike, Daniel Berkeley, 1860-1941",
+      "language": "English",
+      "subjects": [],
+      "downloads": "209 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/77910",
+      "filename": "gutenberg_books\\77910_In the days work by Daniel Berkeley Updike.txt",
+      "file_size_kb": 88.869140625
+    },
+    {
+      "book_id": "77914",
+      "title": "The story of the universe, Volume 4 (of 4) :  The Earth's creaturs: Fauna",
+      "author": "Singleton, Esther, 1865-1930",
+      "language": "English",
+      "subjects": [],
+      "downloads": "0 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/77914",
+      "filename": "gutenberg_books\\77914_The story of the universe Volume 4 of 4   The Earths creaturs Fauna.txt",
+      "file_size_kb": 723.0458984375
+    },
+    {
+      "book_id": "77911",
+      "title": "Wolf Pass by William Byron Mowery",
+      "author": "Mowery, William Byron, 1899-1957",
+      "language": "English",
+      "subjects": [],
+      "downloads": "0 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/77911",
+      "filename": "gutenberg_books\\77911_Wolf Pass by William Byron Mowery.txt",
+      "file_size_kb": 55.9619140625
+    },
+    {
+      "book_id": "35930",
+      "title": "Bevis: The Story of a Boy by Richard Jefferies",
+      "author": "Jefferies, Richard, 1848-1887",
+      "language": "English",
+      "subjects": [],
+      "downloads": "229 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/35930",
+      "filename": "gutenberg_books\\35930_Bevis The Story of a Boy by Richard Jefferies.txt",
+      "file_size_kb": 1004.5927734375
+    },
+    {
+      "book_id": "41",
+      "title": "The Legend of Sleepy Hollow by Washington Irving",
+      "author": "Irving, Washington, 1783-1859",
+      "language": "English",
+      "subjects": [],
+      "downloads": "12466 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/41",
+      "filename": "gutenberg_books\\41_The Legend of Sleepy Hollow by Washington Irving.txt",
+      "file_size_kb": 88.80859375
+    },
+    {
+      "book_id": "77915",
+      "title": "Adelbert and Bastel :  or, Every man in his place. A story for boys. by Hoffmann",
+      "author": "Hoffmann, Franz, 1814-1882",
+      "language": "English",
+      "subjects": [],
+      "downloads": "0 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/77915",
+      "filename": "gutenberg_books\\77915_Adelbert and Bastel   or Every man in his place A story for boys by Hoffmann.txt",
+      "file_size_kb": 151.7412109375
+    },
+    {
+      "book_id": "77258",
+      "title": "Life of John Brown by Michael Gold",
+      "author": "Gold, Michael, 1893-1967",
+      "language": "English",
+      "subjects": [],
+      "downloads": "219 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/77258",
+      "filename": "gutenberg_books\\77258_Life of John Brown by Michael Gold.txt",
+      "file_size_kb": 119.46484375
+    },
+    {
+      "book_id": "58585",
+      "title": "The Prophet by Kahlil Gibran",
+      "author": "Gibran, Kahlil, 1883-1931",
+      "language": "English",
+      "subjects": [],
+      "downloads": "6605 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/58585",
+      "filename": "gutenberg_books\\58585_The Prophet by Kahlil Gibran.txt",
+      "file_size_kb": 87.876953125
+    },
+    {
+      "book_id": "59953",
+      "title": "Supplemental Nights to the Book of the Thousand and One Nights \u2014 Volume 2 (of\u2026",
+      "author": "Burton, Richard Francis, Sir, 1821-1890",
+      "language": "English",
+      "subjects": [],
+      "downloads": "661 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/59953",
+      "filename": "gutenberg_books\\59953_Supplemental Nights to the Book of the Thousand and One Nights  Volume 2 of.txt",
+      "file_size_kb": 875.880859375
+    },
+    {
+      "book_id": "59156",
+      "title": "Supplemental Nights to the Book of the Thousand and One Nights \u2014 Volume 1 (of\u2026",
+      "author": "Burton, Richard Francis, Sir, 1821-1890",
+      "language": "English",
+      "subjects": [],
+      "downloads": "355 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/59156",
+      "filename": "gutenberg_books\\59156_Supplemental Nights to the Book of the Thousand and One Nights  Volume 1 of.txt",
+      "file_size_kb": 712.7958984375
+    },
+    {
+      "book_id": "58360",
+      "title": "The Book of the Thousand Nights and a Night \u2014 Volume 10 (of 10) by Burton",
+      "author": "Burton, Richard Francis, Sir, 1821-1890",
+      "language": "English",
+      "subjects": [],
+      "downloads": "1322 downloads in the last 30 days.",
+      "url": "https://www.gutenberg.org/ebooks/58360",
+      "filename": "gutenberg_books\\58360_The Book of the Thousand Nights and a Night  Volume 10 of 10 by Burton.txt",
+      "file_size_kb": 1755.6103515625
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Content-Length: 12480
+Date: Thu, 12 Feb 2026 05:36:24 GMT
+Server: Apache
+Content-Location: top.php
+Vary: negotiate,Accept-Encoding
+Tcn: choice
+Content-Encoding: gzip
+X-Backend: gutenweb1
+Content-Type: text/html; charset=UTF-8

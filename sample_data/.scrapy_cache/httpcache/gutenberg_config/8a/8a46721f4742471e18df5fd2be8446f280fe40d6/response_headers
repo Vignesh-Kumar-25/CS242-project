@@ -1,0 +1,11 @@
+Content-Length: 4217
+Date: Thu, 12 Feb 2026 05:36:25 GMT
+Server: Apache
+Content-Location: last1.html.utf8.gzip
+Vary: negotiate,accept-encoding
+Tcn: choice
+Last-Modified: Thu, 12 Feb 2026 04:51:27 GMT
+Accept-Ranges: bytes
+X-Backend: gutenweb7
+Content-Type: text/html; charset=utf-8
+Content-Encoding: gzip
