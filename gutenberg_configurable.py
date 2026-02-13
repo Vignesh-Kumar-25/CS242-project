@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 
+
 class ConfigurableGutenbergDownloader(scrapy.Spider):
     name = 'gutenberg_config'
     allowed_domains = ['gutenberg.org']
@@ -26,19 +27,22 @@ class ConfigurableGutenbergDownloader(scrapy.Spider):
         self.logger.info(f"Current Progress: {self.total_bytes/(1024*1024):.1f}MB / {target_mb}MB")
 
         self.start_urls = [
-            'https://www.gutenberg.org/browse/scores/top', 
-            'https://www.gutenberg.org/browse/recent/last1',
-            'https://www.gutenberg.org/browse/languages/en',
-            'https://www.gutenberg.org/ebooks/search/?sort_order=downloads',
-            'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=201',
-            'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=601',
-            'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=1001',
+            f'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index={i}'
+            for i in range(1, 5001, 25)
+            #'https://www.gutenberg.org/browse/scores/top', 
+            #'https://www.gutenberg.org/browse/recent/last1',
+            #'https://www.gutenberg.org/browse/languages/en',
+            #'https://www.gutenberg.org/ebooks/search/?sort_order=downloads',
+            #'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=201',
+            #'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=601',
+            #'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=1001',
+
         ]
 
     custom_settings = {
         'ROBOTSTXT_OBEY': False,
         'DOWNLOAD_DELAY': 1.0,
-        'CONCURRENT_REQUESTS': 16,
+        'CONCURRENT_REQUESTS': 9,
         'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         'HTTPCACHE_ENABLED': False,
         'JOBDIR': 'crawls/gutenberg_final_push', 
