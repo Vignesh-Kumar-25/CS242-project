@@ -26,6 +26,9 @@ class ConfigurableGutenbergDownloader(scrapy.Spider):
         self.logger.info(f"Current Progress: {self.total_bytes/(1024*1024):.1f}MB / {target_mb}MB")
 
         self.start_urls = [
+            'https://www.gutenberg.org/browse/scores/top', 
+            'https://www.gutenberg.org/browse/recent/last1',
+            'https://www.gutenberg.org/browse/languages/en',
             'https://www.gutenberg.org/ebooks/search/?sort_order=downloads',
             'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=201',
             'https://www.gutenberg.org/ebooks/search/?sort_order=downloads&start_index=601',
