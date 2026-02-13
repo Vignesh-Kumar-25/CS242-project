@@ -5,7 +5,7 @@
 ```bash
 ./crawler.sh 500 /data
 ./indexbuilder.sh /data
-
+```
 Overview
 
 This project implements a complete Information Retrieval pipeline:
