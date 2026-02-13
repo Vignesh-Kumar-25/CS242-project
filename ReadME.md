@@ -3,8 +3,8 @@
 ## Quick Run (Only Two Commands Needed)
 
 ```bash
-./crawler.sh 500 /data
-./indexbuilder.sh /data
+./crawler.sh 500 /sample_data
+./indexbuilder.sh /sample_data
 ```
 Overview
 
