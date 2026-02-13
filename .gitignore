@@ -1,3 +1,7 @@
 reddit-ir-partA\pylucene-9.6.0
 .scrapy
 gutenberg_books
+data/
+index/
+httpcache/
+crawls/
