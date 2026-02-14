@@ -2,9 +2,23 @@
 
 ## Quick Run (Only Two Commands Needed)
 
+Activate Python environment
+
 ```bash
-./crawler.sh 500 /sample_data
-./indexbuilder.sh /sample_data
+source venv310/bin/activate
+```
+Set Java + PyLucene runtime paths
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export JCC_JDK=$JAVA_HOME
+export PATH="$JAVA_HOME/bin:$PATH"
+export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$JAVA_HOME/lib:$LD_LIBRARY_PATH
+
+```
+```bash
+./crawler.sh 500 data
+./indexbuilder.sh data
 ```
 Overview
 
