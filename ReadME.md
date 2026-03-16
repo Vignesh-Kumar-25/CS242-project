@@ -125,6 +125,8 @@ python query_interface.py --query "love and war" --index bert --topk 5 --bert_in
 
 # Query Lucene index
 python query_interface.py --query "love and war" --index lucene --topk 5 --lucene_index_dir indexes/gutenberg
-```
 
+# WebApp version
+streamlit run part_b_search_app.py 
+```
 </details>
