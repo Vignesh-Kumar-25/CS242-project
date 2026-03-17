@@ -17,19 +17,31 @@ try:
 except Exception:
     BERT_DEPS_OK = False
 
-# Lucene/Pyserini deps
+# Lucene/PyLucene deps
 try:
-    from pyserini.search.lucene import LuceneSearcher
+    import lucene
+    from java.nio.file import Paths as JavaPaths
+    from org.apache.lucene.store import FSDirectory
+    from org.apache.lucene.index import DirectoryReader
+    from org.apache.lucene.search import IndexSearcher
+    from org.apache.lucene.queryparser.classic import QueryParser, MultiFieldQueryParser
+    from org.apache.lucene.analysis.standard import StandardAnalyzer
+    
+    # Initialize Lucene VM once
+    if not lucene.getVMEnv():
+        lucene.initVM()
+    
     LUCENE_DEPS_OK = True
-except Exception:
+except Exception as e:
     LUCENE_DEPS_OK = False
+    LUCENE_ERROR = str(e)
 
 
 # -----------------------------
 # Config
 # -----------------------------
 DEFAULT_BERT_INDEX_DIR = "data/bert_index"
-DEFAULT_LUCENE_INDEX_DIR = "indexes/gutenberg"
+DEFAULT_LUCENE_INDEX_DIR = "index"  # Changed from pylucene build dir to actual index
 
 
 # -----------------------------
@@ -97,6 +109,74 @@ class BERTSearcher:
 
 
 # -----------------------------
+# PyLucene Searcher
+# -----------------------------
+class PyLuceneSearcher:
+    def __init__(self, index_dir: str):
+        # CRITICAL: Attach current thread to JVM
+        try:
+            lucene.getVMEnv().attachCurrentThread()
+        except:
+            pass 
+        self.index_dir = index_dir
+        self.directory = FSDirectory.open(JavaPaths.get(str(index_dir)))
+        self.reader = DirectoryReader.open(self.directory)
+        self.searcher = IndexSearcher(self.reader)
+        self.analyzer = StandardAnalyzer()
+    
+    def search(self, query_text: str, topk: int = 5):
+        """Search using PyLucene with multi-field query"""
+        # Search across multiple fields: title, author, content
+        try:
+            lucene.getVMEnv().attachCurrentThread()
+        except:
+            pass
+        fields = ["title", "author", "content"]
+        parser = MultiFieldQueryParser(fields, self.analyzer)
+        
+        try:
+            query = parser.parse(query_text)
+        except Exception as e:
+            # Fallback to single field if multi-field fails
+            parser = QueryParser("content", self.analyzer)
+            query = parser.parse(query_text)
+        
+        # Search
+        hits = self.searcher.search(query, topk)
+        
+        results = []
+        for hit in hits.scoreDocs:
+            doc = self.searcher.doc(hit.doc)
+            
+            # Extract fields
+            book_id = doc.get("book_id") or "N/A"
+            title = doc.get("title") or "Unknown"
+            author = doc.get("author") or "Unknown"
+            
+            # Get snippet from content (if stored)
+            # Note: content field is NOT stored in your indexer, so this will be empty
+            # You might want to modify your indexer to store a snippet
+            snippet = doc.get("content") or "[Content not stored - modify indexer to store snippets]"
+            if len(snippet) > 500:
+                snippet = snippet[:500] + "..."
+            
+            results.append({
+                "docid": hit.doc,
+                "score": float(hit.score),
+                "book_id": book_id,
+                "title": title,
+                "author": author,
+                "snippet": snippet
+            })
+        
+        return results
+    
+    def close(self):
+        if hasattr(self, 'reader'):
+            self.reader.close()
+
+
+# -----------------------------
 # Cached loaders
 # -----------------------------
 @st.cache_resource(show_spinner=False)
@@ -106,7 +186,7 @@ def load_bert_searcher(index_dir: str):
 
 @st.cache_resource(show_spinner=False)
 def load_lucene_searcher(index_dir: str):
-    return LuceneSearcher(index_dir)
+    return PyLuceneSearcher(index_dir)
 
 
 # -----------------------------
@@ -117,41 +197,9 @@ def run_bert_search(query: str, topk: int, index_dir: str):
     return searcher.search(query, topk)
 
 
-
 def run_lucene_search(query: str, topk: int, index_dir: str):
     searcher = load_lucene_searcher(index_dir)
-    hits = searcher.search(query, topk)
-
-    results = []
-    for hit in hits:
-        raw_text = ""
-        doc_title = ""
-
-        try:
-            doc = searcher.doc(hit.docid)
-            raw_text = doc.raw() if doc else ""
-        except Exception:
-            raw_text = ""
-
-        if raw_text:
-            try:
-                raw_json = json.loads(raw_text)
-                doc_title = raw_json.get("title", "")
-                snippet = raw_json.get("contents", "")[:500]
-            except Exception:
-                snippet = raw_text[:500]
-        else:
-            snippet = "Raw document text unavailable."
-
-        results.append(
-            {
-                "docid": hit.docid,
-                "score": float(hit.score),
-                "title": doc_title,
-                "snippet": snippet,
-            }
-        )
-    return results
+    return searcher.search(query, topk)
 
 
 # -----------------------------
@@ -166,7 +214,10 @@ st.write(
 
 with st.sidebar:
     st.header("Search Settings")
-    search_type = st.selectbox("Choose index", ["bert", "lucene"])
+    search_type = st.radio("Choose index", ["BERT (Semantic)", "Lucene (Keyword)"], horizontal=True)
+    # Extract just bert or lucene for logic
+    search_type_key = "bert" if "BERT" in search_type else "lucene"
+    
     topk = st.slider("Top-k results", min_value=1, max_value=20, value=5)
 
     bert_index_dir = st.text_input("BERT index directory", DEFAULT_BERT_INDEX_DIR)
@@ -180,7 +231,7 @@ if search_clicked:
         st.warning("Please enter a query.")
         st.stop()
 
-    if search_type == "bert":
+    if search_type_key == "bert":
         if not BERT_DEPS_OK:
             st.error("BERT dependencies are missing. Install: torch, transformers, faiss-cpu")
             st.stop()
@@ -214,7 +265,8 @@ if search_clicked:
 
     else:
         if not LUCENE_DEPS_OK:
-            st.error("Lucene dependencies are missing. Install: pyserini")
+            st.error(f"Lucene dependencies are missing. Error: {LUCENE_ERROR if 'LUCENE_ERROR' in globals() else 'Unknown'}")
+            st.error("Make sure PyLucene is installed and JAVA_HOME is set.")
             st.stop()
 
         if not Path(lucene_index_dir).exists():
@@ -228,6 +280,8 @@ if search_clicked:
                 elapsed_time = time.perf_counter() - start_time
             except Exception as e:
                 st.error(f"Lucene search failed: {e}")
+                import traceback
+                st.error(traceback.format_exc())
                 st.stop()
 
         st.subheader(f"Top {len(results)} Lucene Results")
@@ -237,10 +291,13 @@ if search_clicked:
                 st.markdown(f"**Result {i}**")
                 st.write(f"**Score:** {result['score']:.4f}")
                 st.write(f"**Doc ID:** {result['docid']}")
-                if result["title"]:
-                    st.write(f"**Title:** {result['title']}")
+                st.write(f"**Book ID:** {result['book_id']}")
+                st.write(f"**Title:** {result['title']}")
+                if result.get('author'):
+                    st.write(f"**Author:** {result['author']}")
                 st.write("**Snippet:**")
-                st.write(result["snippet"] + ("..." if len(result["snippet"]) >= 500 else ""))
+                st.write(result["snippet"])
 
 st.markdown("---")
-st.caption("Tip: Build the BERT index first for semantic search, and build the Lucene index from Part A before using Lucene mode.")
+st.caption("CS242 Project Part B - Hybrid Search System")
+st.caption("Build indexes first: `python bert_indexer.py` and `python indexer.py`")
