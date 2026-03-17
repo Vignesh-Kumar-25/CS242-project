@@ -159,7 +159,7 @@ python bert_indexer.py --data_dir data/gutenberg_raw --index_dir data/bert_index
 ### B2: Query Interface
 
 #### Option 1: Web Application (Recommended)
-
+First, please ensure you have Java 11 installed.
 **Run:**
 ```bash
 # Make sure environment variables are set (WSL/Linux only for Lucene)
@@ -263,36 +263,7 @@ Author names                 → Direct matches
 
 ---
 
-## Project Structure
 
-```
-CS242-project/
-├── crawler.sh                      # Linux crawler executable
-├── crawler.bat                     # Windows crawler executable
-├── indexbuilder.sh                 # Linux Lucene indexer
-├── indexbuilder.bat                # Windows Lucene indexer
-├── run_search_app.sh               # Helper to run web app
-│
-├── gutenberg_configurable.py       # Scrapy crawler
-├── indexer.py                      # PyLucene indexer (Part A)
-├── bert_indexer.py                 # BERT indexer (Part B)
-├── query_interface.py              # CLI search
-├── part_b_search_app.py            # Streamlit web app
-│
-├── data/
-│   ├── gutenberg_raw/              # Downloaded books
-│   ├── bert_index/                 # BERT index files
-│   └── dedup.db                    # Deduplication database
-│
-├── index/                          # Lucene index (default location)
-│
-├── reddit-ir-partA/
-│   └── pylucene-9.6.0/             # PyLucene build
-│
-└── venv310/                        # Python virtual environment
-```
-
----
 
 ## System Requirements
 
